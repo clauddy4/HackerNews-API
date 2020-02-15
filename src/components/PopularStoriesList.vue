@@ -5,7 +5,6 @@
 </template>
 
 <script>
-    import axios from 'axios';
     import Item from "./Item";
 
     export default {
@@ -16,29 +15,11 @@
         data: function () {
             return {
                 err: '',
-                stories: [],
+                stories: this.$store.state.topStories,
             }
         },
         created: function () {
-            axios.get('https://hacker-news.firebaseio.com/v0/topstories.json')
-                .then(result => {
-                    this.results = result.data.slice(0, 20);
-                    this.results.forEach(element => {
-                        axios
-                            .get(
-                                "https://hacker-news.firebaseio.com/v0/item/" + element + ".json"
-                            )
-                            .then(result => {
-                                this.stories.push(result);
-                            })
-                            .catch(err => {
-                                console.log(err);
-                            });
-                    });
-                })
-                .catch((err) => {
-                    this.err = err
-                })
+            if (this.$store.state.topStories.length === 0) this.$store.dispatch('fetch_top_stories')
         }
     }
 </script>
