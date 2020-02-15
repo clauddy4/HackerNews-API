@@ -20,9 +20,9 @@ export default {
     }
   },
   created: function () {
-    axios.get('https://hacker-news.firebaseio.com/v0/topstories.json')
+    axios.get('https://hacker-news.firebaseio.com/v0/newstories.json')
       .then(result => {
-        this.results = result.data.slice(0, 10);
+        this.results = result.data.slice(0, 20);
         this.results.forEach(element => {
           axios
             .get(
