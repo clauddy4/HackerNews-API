@@ -1,15 +1,14 @@
 <template>
     <div class="container">
         <h2>{{ story.title }}</h2>
-        <p>Score: {{ story.score }}</p>
-        <p>{{ story.url }}</p>
+        <p>{{story.descendants}} comments:</p>
         <div v-for="comment in comments" :key="comment">
             <div class="comment-wrap">
                 <div class="comment-block">
-                    <p class="comment-text">{{ comment.text }}</p>
+                    <div class="comment-text" v-html="comment.text"></div>
                     <div class="bottom-comment">
                         <div class="comment-author">{{ comment.by }}</div>
-                        <div class="comment-date">{{ comment.time }}</div>
+                        <div class="comment-date">{{ comment.time | getTime}} ago</div>
                     </div>
                 </div>
             </div>
@@ -21,7 +20,7 @@
     import axios from 'axios';
 
     export default {
-        name: "StoryPage",
+        name: "Comments",
         data: function() {
             return {
                 story: {},

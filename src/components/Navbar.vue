@@ -1,16 +1,10 @@
 <template>
     <div class="navbar-container">
         <nav class="navbar">
-            <ul class="navbar-item">
-                <li><router-link to="/">Newest Stories</router-link></li>
-            </ul>
-            <ul class="navbar-item">
-                <li><router-link to="/popular">Most Popular Stories</router-link></li>
-            </ul>
+            <router-link class="navbar-item" to="/">Newest Stories</router-link>
+            <router-link class="navbar-item" to="/popular">Most Popular Stories</router-link>
             <form>
-                <ul class="navbar-item search">
-                    <li><input type="search" placeholder="Search..."></li>
-                </ul>
+                <input class="search navbar-item" type="search" placeholder="Search...">
             </form>
         </nav>
     </div>

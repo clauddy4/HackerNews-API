@@ -1,10 +1,11 @@
 <template>
     <div class="story">
         <span class="score">{{ story.data.score }}</span>
-        <router-link :to="{path: '/story/' + story.data.id}">{{story.data.title}}<router-link :to="{path:'/story/' + story.data.id}"></router-link >
-            <span>{{  story.data.url | host }}</span></router-link>
+        <a :href="story.data.url" target="_blank"><h1>{{ story.data.title }}</h1></a>
+        <span>{{  story.data.url | host }}</span>
         <span class="meta">
-            by {{ story.data.by }} {{ story.data.time | timeAgo }} ago  | {{story.data.descendants }} comments
+            by by <router-link :to="'/user/' + story.data.by">{{ story.data.by }}</router-link> {{ story.data.time | getTime }} ago  |
+            <router-link class="comments" :to="{path:'/story/' + story.data.id}">{{story.data.descendants}} comments</router-link >
         </span>
     </div>
 </template>
@@ -49,6 +50,10 @@
     }
     .story .meta {
         font-size: 0.85em;
+        color: #828282;
+    }
+
+    .comments:hover {
         color: #828282;
     }
 </style>

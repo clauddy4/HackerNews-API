@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import StoriesList from '../components/StoriesList.vue'
-import StoryPage from "../components/StoryPage";
+import NewStoriesList from '../components/NewStoriesList.vue'
+import Comments from "../components/Comments";
 import PopularStoriesList from "../components/PopularStoriesList";
+import User from "../components/User";
 
 Vue.use(VueRouter)
 
@@ -10,7 +11,7 @@ const routes = [
   {
     path: '/',
     name: 'Home Page',
-    component: StoriesList
+    component: NewStoriesList
   },
   {
     path: '/popular',
@@ -20,7 +21,11 @@ const routes = [
   {
     path: '/story/:id',
     name: 'Story',
-    component: StoryPage,
+    component: Comments,
+  },
+  {
+    path: '/user/:id',
+    component: User,
   }
 ]
 

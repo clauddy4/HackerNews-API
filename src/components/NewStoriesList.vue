@@ -8,7 +8,7 @@
     import Item from "./Item";
 
     export default {
-        name: 'StoriesList',
+        name: 'NewStoriesList',
         components: {
             'Item': Item
         },
