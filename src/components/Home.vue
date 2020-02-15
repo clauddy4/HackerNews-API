@@ -1,7 +1,11 @@
 <template>
   <div>
-    <h1>This is a home page</h1>
-    <div v-for="story in stories" :key="story">{{ story }}</div>
+    <div v-for="story in stories" :key="story.id">
+      <h4>{{ story.data.title }}</h4>
+      <p>Type: {{ story.data.type }}</p>
+      <p>Link: {{ story.data.url }}</p>
+      <p>Score: {{ story.data.score }}</p>
+    </div>
   </div>
 </template>
 
@@ -39,3 +43,7 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+</style>
