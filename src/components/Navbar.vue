@@ -2,10 +2,10 @@
     <div class="navbar-container">
         <nav class="navbar">
             <ul class="navbar-item">
-                <li><router-link to="/">Home</router-link></li>
+                <li><router-link to="/">Newest Stories</router-link></li>
             </ul>
             <ul class="navbar-item">
-                <li><router-link to="/about">About</router-link></li>
+                <li><router-link to="/popular">Most Popular Stories</router-link></li>
             </ul>
             <form>
                 <ul class="navbar-item search">
@@ -13,7 +13,6 @@
                 </ul>
             </form>
         </nav>
-
     </div>
 </template>
 

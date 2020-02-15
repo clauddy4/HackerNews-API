@@ -9,7 +9,7 @@ import axios from 'axios';
 import Item from "./Item";
 
 export default {
-  name: 'Home',
+  name: 'StoriesList',
   components: {
     'Item': Item
   },

@@ -1,15 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../components/Home.vue'
+import StoriesList from '../components/StoriesList.vue'
 import StoryPage from "../components/StoryPage";
+import PopularStoriesList from "../components/PopularStoriesList";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Home Page',
+    component: StoriesList
+  },
+  {
+    path: '/popular',
+    name: 'Top Stories',
+    component: PopularStoriesList,
   },
   {
     path: '/story/:id',
