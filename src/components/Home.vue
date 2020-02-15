@@ -1,19 +1,18 @@
 <template>
   <div>
-    <div v-for="story in stories" :key="story.id">
-      <h4>{{ story.data.title }}</h4>
-      <p>Type: {{ story.data.type }}</p>
-      <p>Link: {{ story.data.url }}</p>
-      <p>Score: {{ story.data.score }}</p>
-    </div>
+    <Item v-for="story in stories" :key="story.data.id" :story="story"></Item>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Item from "./Item";
 
 export default {
   name: 'Home',
+  components: {
+    'Item': Item
+  },
   data: function () {
     return {
       err: '',
