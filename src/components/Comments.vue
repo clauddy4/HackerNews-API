@@ -7,7 +7,7 @@
                 <div class="comment-block">
                     <div class="comment-text" v-html="comment.text"></div>
                     <div class="bottom-comment">
-                        <div class="comment-author">{{ comment.by }}</div>
+                        <router-link :to="'/user/' + comment.by"><p class="comment-author">{{ comment.by }}</p></router-link>
                         <div class="comment-date">{{ comment.time | getTime}} ago</div>
                     </div>
                 </div>
@@ -60,18 +60,9 @@
         min-height: 5.3125rem;
     }
 
-    .photo {
-        padding-top: 0.625rem;
-        display: table-cell;
-        width: 3.5rem;
+    .comment-author {
+        margin-bottom: 0;
     }
-    .photo .avatar {
-        height: 2.25rem;
-        width: 2.25rem;
-        border-radius: 50%;
-        background-size: contain;
-    }
-
     .comment-block {
         padding: 1rem;
         background-color: #fff;
@@ -99,9 +90,6 @@
         float: left;
     }
 
-    .comment-actions {
-        float: right;
-    }
     .comment-actions li {
         display: inline;
         margin: -2px;

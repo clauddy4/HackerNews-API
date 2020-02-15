@@ -2,11 +2,8 @@
     <div class="user-view">
         <template v-if="user">
             <h1>User : {{ user.id }}</h1>
-            <ul class="meta">
-                <li><span class="label">Created:</span> {{ user.created | getTime }} ago</li>
-                <li><span class="label">Karma:</span> {{ user.karma }}</li>
-                <li v-if="user.about" v-html="user.about" class="about"></li>
-            </ul>
+            <p>Created {{ user.created | getTime }} ago</p>
+            <p>Karma: {{ user.karma }}</p>
             <p class="links">
                 <a :href="'https://news.ycombinator.com/submitted?id=' + user.id" target="_blank">submissions</a> |
                 <a :href="'https://news.ycombinator.com/threads?id=' + user.id" target="_blank">comments</a>
@@ -19,7 +16,6 @@
 </template>
 
 <script>
-
     import axios from "axios";
 
     export default {
@@ -48,12 +44,7 @@
                 .catch(err => {
                     console.log(err);
                 });
-        },
-        title () {
-            return this.user
-                ? this.user.id
-                : 'User not found'
-        },
+        }
     }
 </script>
 
