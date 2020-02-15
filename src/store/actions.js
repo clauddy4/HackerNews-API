@@ -41,9 +41,22 @@ export default {
                 console.log(err);
             });
     },
-    FETCH_USER: ({ commit, state }, { id }) => {
-        return state.users[id]
-            ? Promise.resolve(state.users[id])
-            : fetchUser(id).then(user => commit('SET_USER', { id, user }))
-    }
+    // FETCH_USER: ({ commit }, { id }) => {
+    //     axios
+    //         .get("https://hacker-news.firebaseio.com/v0/user.json")
+    //         .then(resp => {
+    //             let user = resp.data;
+    //             user.axios.get("https://hacker-news.firebaseio.com/v0/user/" + id + ".json")
+    //                 .then(users => {
+    //                     commit("SET_USER", users);
+    //                 })
+    //                 .catch(err => {
+    //                     console.log(err);
+    //                 });
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         });
+    // },
+
 };
