@@ -1,11 +1,9 @@
-# hacker-news
+# News from the open API of the Hacker News site
 
 ## Project setup
 ```
 npm install
 ```
-
-### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
