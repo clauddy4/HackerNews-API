@@ -1,4 +1,5 @@
-# News from the open API of the Hacker News site
+# HackerNews-API
+News from the open API of the Hacker News site
 
 ## Project setup
 ```
