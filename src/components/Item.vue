@@ -2,7 +2,6 @@
     <div class="story">
         <span class="score">{{ story.data.score }}</span>
         <a :href="story.data.url" target="_blank"><h1>{{ story.data.title }}</h1></a>
-        <span>{{  story.data.url | host }}</span>
         <span class="meta">
             by <router-link :to="'/user/' + story.data.by">{{ story.data.by }}</router-link> {{ story.data.time | getTime }} ago  |
             <router-link class="comments" :to="{path:'/story/' + story.data.id}">{{story.data.descendants}} comments</router-link >

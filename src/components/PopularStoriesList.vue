@@ -19,7 +19,7 @@
             }
         },
         created: function () {
-            if (this.$store.state.topStories.length === 0) this.$store.dispatch('fetch_top_stories')
+            if (this.$store.state.topStories.length === 0) this.$store.dispatch('FETCH_TOP_STORIES')
         }
     }
 </script>

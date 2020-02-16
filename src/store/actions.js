@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export default {
-    fetch_top_stories: ({ commit }) => {
+    FETCH_TOP_STORIES: ({ commit }) => {
         axios.get("https://hacker-news.firebaseio.com/v0/topstories.json")
             .then(resp => {
-                let results = resp.data.slice(0, 20);
+                let results = resp.data;
                 results.forEach(element => {
                     axios.get(
                             "https://hacker-news.firebaseio.com/v0/item/" + element + ".json"
@@ -21,13 +21,13 @@ export default {
                 console.log(err);
             });
     },
-    fetch_new_stories: ({ commit }) => {
+    FETCH_NEW_STORIES: ({ commit }) => {
         axios.get("https://hacker-news.firebaseio.com/v0/newstories.json")
             .then(resp => {
-                let results = resp.data.slice(0, 20);
+                let results = resp.data.slice(1, 100);
                 results.forEach(element => {
-                    axios
-                        .get("https://hacker-news.firebaseio.com/v0/item/" + element + ".json"
+                    axios.get(
+                        "https://hacker-news.firebaseio.com/v0/item/" + element + ".json"
                         )
                         .then(result => {
                             commit("APPEND_NEW_STORY", result);

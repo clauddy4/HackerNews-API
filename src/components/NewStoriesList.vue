@@ -19,7 +19,7 @@
             }
         },
         created: function () {
-            if (this.$store.state.newStories.length === 0) this.$store.dispatch('fetch_new_stories')
+            if (this.$store.state.newStories.length === 0) this.$store.dispatch('FETCH_NEW_STORIES')
         }
     }
 </script>
