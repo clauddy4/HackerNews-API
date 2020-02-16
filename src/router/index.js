@@ -14,7 +14,7 @@ const routes = [
     component: NewStoriesList
   },
   {
-    path: '/popular',
+    path: '/top',
     name: 'Top Stories',
     component: PopularStoriesList,
   },

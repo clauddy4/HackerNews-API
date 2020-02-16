@@ -7,8 +7,8 @@
                 <div class="comment-block">
                     <div class="comment-text" v-html="comment.text"></div>
                     <div class="bottom-comment">
-                        <router-link :to="'/user/' + comment.by"><p class="comment-author">{{ comment.by }}</p></router-link>
-                        <div class="comment-date">{{ comment.time | getTime}} ago</div>
+                        <router-link :to="'/user/' + comment.by"><p class="author">{{ comment.by }}</p></router-link>
+                        <div class="date">{{ comment.time | getTime}} ago</div>
                     </div>
                 </div>
             </div>
@@ -41,58 +41,40 @@
     }
 </script>
 
-<style scoped>
-    .comment-wrap {
-        margin-bottom: 1.25rem;
-        display: table;
-        width: 100%;
-        min-height: 5.3125rem;
+<style lang="scss">
+    .container {
+
+        h2 {
+            font-size: 22px;
+        }
+
+        .comment-wrap {
+            margin-bottom: 5px;
+            width: 100%;
+            min-height: 5.3125rem;
+
+            .comment-block {
+                padding: 1rem;
+                background-color: #fff;
+                border-radius: 0.1875rem;
+                -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+            }
+
+                .comment-text {
+                    margin-bottom: 1.25rem;
+                }
+
+                .bottom-comment {
+                    color: #acb4c2;
+                    font-size: 0.875rem;
+
+                    .author {
+                        margin-bottom: 5px;
+                        color: #ff6600;
+                    }
+                }
+        }
     }
 
-    .comment-author {
-        margin-bottom: 0;
-    }
-    .comment-block {
-        padding: 1rem;
-        background-color: #fff;
-        display: table-cell;
-        vertical-align: top;
-        border-radius: 0.1875rem;
-        -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
-    }
-    .comment-block textarea {
-        width: 100%;
-        resize: none;
-    }
-
-    .comment-text {
-        margin-bottom: 1.25rem;
-    }
-
-    .bottom-comment {
-        color: #acb4c2;
-        font-size: 0.875rem;
-    }
-
-    .comment-date {
-        float: left;
-    }
-
-    .comment-actions li {
-        display: inline;
-        margin: -2px;
-        cursor: pointer;
-    }
-    .comment-actions li.complain {
-        padding-right: 0.75rem;
-        border-right: 1px solid #e1e5eb;
-    }
-    .comment-actions li.reply {
-        padding-left: 0.75rem;
-        padding-right: 0.125rem;
-    }
-    .comment-actions li:hover {
-        color: #0095ff;
-    }
 </style>

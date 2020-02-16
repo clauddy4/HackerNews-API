@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <div id="nav">
+  <div class="app container">
+    <div class="nav">
       <Navbar></Navbar>
     </div>
     <router-view/>
@@ -18,19 +18,20 @@
 </script>
 
 
-<style>
-#app {
-  padding-left: 20px;
-  text-align: left;
-  color: #2c3e50;
-}
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Tomorrow&display=swap');
 
-#nav a {
-  font-weight: bold;
+.app {
+  font: normal 14px/18px 'Tomorrow', sans-serif;
   color: #2c3e50;
-}
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+  .nav a{
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .nav a.router-link-exact-active {
+    color: #f60;
+  }
 }
 </style>

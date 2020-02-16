@@ -1,13 +1,13 @@
 <template>
-    <div class="navbar-container">
-        <nav class="navbar">
-            <router-link class="navbar-item" to="/">Newest Stories</router-link>
-            <router-link class="navbar-item" to="/popular">Most Popular Stories</router-link>
-            <form>
-                <input class="search navbar-item" type="search" placeholder="Search...">
-            </form>
-        </nav>
-    </div>
+  <div class="navbar-container">
+    <nav class="navbar">
+      <router-link class="navbar-item" to="/">Newest Stories</router-link>
+      <router-link class="navbar-item" to="/top">Most Popular Stories</router-link>
+      <form>
+        <input class="search navbar-item" type="search" placeholder="Search...">
+      </form>
+    </nav>
+  </div>
 </template>
 
 <script>
@@ -16,13 +16,23 @@
     }
 </script>
 
-<style scoped>
-    .navbar{
-        display: flex;
-    }
+<style scoped lang="scss">
+  .navbar{
+    display: flex;
+    background-color: #2c3e50;
+    padding: 0 0 20px 30px;
 
     .navbar-item {
-        margin: 24px 24px 0 0;
+      margin: 24px 24px 0 0;
     }
+
+    .search {
+      border-width: 0;
+      border-radius: 2px;
+      padding: 4px;
+      background: #e6e6e6;
+    }
+  }
+
 
 </style>

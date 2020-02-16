@@ -19,41 +19,42 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .story {
         background-color: #fff;
-        padding: 20px 30px 20px 80px;
+        padding: 15px 30px 15px 80px;
         border-bottom: 1px solid #eee;
         position: relative;
         line-height: 20px;
-    }
-    .score {
-        color: #f60;
-        font-size: 1.1em;
-        font-weight: 700;
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 80px;
-        text-align: center;
-        margin-top: -10px;
-    }
-    .story a {
-        color: #34495e;
-        font-weight: 600;
-        text-decoration: none;
-    }
-    .story a span {
-        font-size: 0.85em;
-        margin-left: 10px;
-        color: #828282;
-    }
-    .story .meta {
-        font-size: 0.85em;
-        color: #828282;
-    }
 
-    .comments:hover {
-        color: #828282;
+        .score {
+            color: #f60;
+            font-weight: 600;
+            font-size: 1.3em;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 70px;
+            text-align: center;
+            margin-top: -10px;
+        }
+        a {
+            color: #34495e;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        a span {
+            margin-left: 10px;
+            color: #828282;
+        }
+        .meta .comments{
+            font-size: 0.85em;
+            color: #828282;
+
+        }
+
+        .comments:hover {
+            color: #34495e;
+        }
     }
 </style>

@@ -4,6 +4,7 @@
             <h1>User : {{ user.id }}</h1>
             <p>Created {{ user.created | getTime }} ago</p>
             <p>Karma: {{ user.karma }}</p>
+            <p v-html="user.about">{{ user.about }}</p>
             <p class="links">
                 <a :href="'https://news.ycombinator.com/submitted?id=' + user.id" target="_blank">submissions</a> |
                 <a :href="'https://news.ycombinator.com/threads?id=' + user.id" target="_blank">comments</a>
@@ -22,7 +23,7 @@
         name: 'User',
         data: function() {
             return {
-                user: {}
+                user: {},
             }
         },
         created: function() {
@@ -31,7 +32,7 @@
                     this.user = res.data;
                     this.user.forEach(id => {
                         axios.get("https://hacker-news.firebaseio.com/v0/user/" + id + ".json")
-                            .then(res => { this.user.push(res.data);});
+                            .then(res => { this.user.push(res.data); });
                     })
                 })
         }
