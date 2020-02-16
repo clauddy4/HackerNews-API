@@ -31,19 +31,9 @@
                     this.user = res.data;
                     this.user.forEach(id => {
                         axios.get("https://hacker-news.firebaseio.com/v0/user/" + id + ".json")
-                            .then(res => {
-                                this.$nextTick(() => {
-                                    this.user.push(res.data);
-                                })
-                                    .catch(err => {
-                                        console.log(err);
-                                    });
-                            });
+                            .then(res => { this.user.push(res.data);});
                     })
                 })
-                .catch(err => {
-                    console.log(err);
-                });
         }
     }
 </script>

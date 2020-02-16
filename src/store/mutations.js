@@ -7,4 +7,7 @@ export default {
     APPEND_NEW_STORY: (state, article) => {
         state.newStories.push(article);
     },
+    APPEND_COMMENT: (state, article) => {
+        state.newStories.push(article);
+    },
 };
