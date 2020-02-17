@@ -2,7 +2,7 @@
     <div class="container">
         <h2>{{ story.title }}</h2>
         <p>{{story.descendants}} comments:</p>
-        <div v-for="comment in comments" :key="comment">
+        <div v-for="(comment, idx) in comments" :key="idx">
             <div class="comment-wrap">
                 <div class="comment-block">
                     <div class="comment-text" v-html="comment.text"></div>
@@ -37,7 +37,7 @@
                             .then(res => { this.comments.push(res.data);})
                     });
                 })
-        }
+        },
     }
 </script>
 
