@@ -1,6 +1,6 @@
 <template>
   <div class="story">
-    <span class="score">{{ story.data.score }}</span>
+    <span class="score">{{ story.score }}</span>
     <a :href="story.data.url" target="_blank"><h1>{{ story.data.title }}</h1></a>
     <span class="meta">
       by <router-link :to="'/user/' + story.data.by">{{ story.data.by }}</router-link> {{ story.data.time | getTime }} ago  |

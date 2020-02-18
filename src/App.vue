@@ -22,7 +22,7 @@
 @import url('https://fonts.googleapis.com/css?family=Tomorrow&display=swap');
 
 .app {
-  font: normal 14px/18px 'Tomorrow', sans-serif;
+  font: normal 14px/22px 'Tomorrow', sans-serif;
   color: #2c3e50;
 
   .nav a{

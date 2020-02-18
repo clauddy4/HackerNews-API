@@ -1,26 +1,32 @@
 <template>
   <div>
-    <Item v-for="story in stories" :key="story.data.id" :story="story"></Item>
+    <div v-for="story in stories.hits" :key="story.objectID">
+      <h2>{{ story.title }}</h2>
+    </div>
   </div>
 </template>
 
 <script>
-  import Item from "./Item";
+  import axios from "axios";
 
   export default {
     name: 'NewStoriesList',
-    components: {
-      'Item': Item
-    },
     data: function () {
       return {
         err: '',
-        stories: this.$store.state.newStories,
+        stories: [],
       }
     },
     created: function () {
-      if (this.$store.state.newStories.length === 0) this.$store.dispatch('FETCH_NEW_STORIES')
-    }
+
+        axios.get("http://hn.algolia.com/api/v1/search_by_date?tags=story")
+            .then(response => {
+                this.stories = response.data;
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    },
   }
 </script>
 
