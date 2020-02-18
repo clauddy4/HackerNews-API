@@ -1,12 +1,12 @@
 <template>
   <div class="story">
-    <span class="score">{{ story.score }}</span>
-    <a :href="story.data.url" target="_blank"><h1>{{ story.data.title }}</h1></a>
-    <span class="meta">
-      by <router-link :to="'/user/' + story.data.by">{{ story.data.by }}</router-link> {{ story.data.time | getTime }} ago  |
-      <router-link class="comments" :to="{path:'/story/' + story.data.id}">{{story.data.descendants}} comments</router-link >
-    </span>
-  </div>
+      <span class="points">{{ story.points }}</span>
+      <a :href="story.url" target="_blank"><h1 class="title">{{ story.title }}</h1></a>
+      <span class="meta">
+        by <router-link class="author" :to="'/user/' + story.author">{{ story.author }}</router-link> {{ story.created_at }} |
+        <router-link class="comments" :to="{path:'/comments/' + story.id}"> Comments </router-link >
+      </span>
+    </div>
 </template>
 
 <script>
@@ -26,7 +26,7 @@
     position: relative;
     line-height: 20px;
 
-      .score {
+      .points {
         color: #f60;
         font-weight: 600;
         font-size: 1.3em;
