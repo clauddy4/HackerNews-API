@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import NewStoriesList from '../components/NewStoriesList.vue'
+import StoriesList from '../components/StoriesList.vue'
 import Comments from "../components/Comments";
 import User from "../components/User";
 
@@ -10,7 +10,7 @@ const routes = [
   {
     path: '/',
     name: 'Home Page',
-    component: NewStoriesList
+    component: StoriesList
   },
   {
     path: '/comments/:id',

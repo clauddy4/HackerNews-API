@@ -1,7 +1,7 @@
 <template>
   <div class="navbar-container">
     <nav class="navbar">
-      <router-link class="navbar-item" to="/">Newest Stories</router-link>
+      <router-link class="navbar-item" to="/">Hacker News</router-link>
       <form>
         <input class="search navbar-item" type="search" placeholder="Search...">
       </form>

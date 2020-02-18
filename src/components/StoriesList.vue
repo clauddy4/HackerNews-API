@@ -2,11 +2,11 @@
   <div class="story">
     <div v-for="story in stories.hits" :key="story.objectID">
       <span class="points">{{ story.points }}</span>
-      <a :href="story.url" target="_blank"><h1>{{ story.title }}</h1></a>
+      <a :href="story.url" target="_blank"><h1 class="title">{{ story.title }}</h1></a>
       <span class="meta">
-      by <router-link :to="'/user/' + story.author">{{ story.author }}</router-link> {{ story.created_at }} |
-      <router-link class="comments" :to="{path:'/comments/' + story.id}"> Comments </router-link >
-    </span>
+        by <router-link class="author" :to="'/user/' + story.author">{{ story.author }}</router-link> {{ story.created_at }} |
+        <router-link class="comments" :to="{path:'/comments/' + story.id}"> Comments </router-link >
+      </span>
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@
   import axios from "axios";
 
   export default {
-    name: 'NewStoriesList',
+    name: 'toriesList',
     data: function () {
       return {
         err: '',
@@ -46,12 +46,20 @@
     .points {
       color: #f60;
       font-weight: 600;
-      font-size: 1.3em;
+      font-size: 1.5em;
       width: 70px;
       text-align: center;
       position: relative;
       top: 45px;
       right: 55px;
+    }
+
+    .title {
+      font-size: 18px;
+    }
+
+    .meta {
+      color: #828282;
     }
 
     a {
@@ -63,13 +71,14 @@
       margin-left: 10px;
       color: #828282;
     }
-    .meta .comments{
+    .comments, .author{
       font-size: 0.85em;
       color: #828282;
-
     }
 
-    .comments:hover {
+    .comments:hover,
+    .author:hover,
+    {
       color: #34495e;
     }
   }
