@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import NewStoriesList from '../components/NewStoriesList.vue'
 import Comments from "../components/Comments";
-import PopularStoriesList from "../components/PopularStoriesList";
 import User from "../components/User";
 
 Vue.use(VueRouter)
@@ -14,13 +13,8 @@ const routes = [
     component: NewStoriesList
   },
   {
-    path: '/top',
-    name: 'Top Stories',
-    component: PopularStoriesList,
-  },
-  {
-    path: '/story/:id',
-    name: 'Story',
+    path: '/comments/:id',
+    name: 'Comments',
     component: Comments,
   },
   {
