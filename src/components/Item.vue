@@ -4,7 +4,7 @@
       <a :href="story.url" target="_blank"><h1 class="title">{{ story.title }}</h1></a>
       <span class="meta">
         by <router-link class="author" :to="'/user/' + story.author">{{ story.author }}</router-link> {{ story.created_at }} |
-        <router-link class="comments" :to="{path:'/comments/' + story.id}"> Comments </router-link >
+        <router-link class="comments" :to="{path:'/comments/' + story.objectID}"> Comments </router-link >
       </span>
     </div>
 </template>
