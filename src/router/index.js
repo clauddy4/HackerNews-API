@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import NewStoriesList from '../components/NewStoriesList.vue'
+import StoriesList from '../components/StoriesList.vue'
 import Comments from "../components/Comments";
-import PopularStoriesList from "../components/PopularStoriesList";
 import User from "../components/User";
+import Search from "../components/Search";
 
 Vue.use(VueRouter)
 
@@ -11,22 +11,21 @@ const routes = [
   {
     path: '/',
     name: 'Home Page',
-    component: NewStoriesList
+    component: StoriesList
   },
   {
-    path: '/top',
-    name: 'Top Stories',
-    component: PopularStoriesList,
-  },
-  {
-    path: '/story/:id',
-    name: 'Story',
+    path: '/comments/:id',
+    name: 'Comments',
     component: Comments,
   },
   {
     path: '/user/:id',
     component: User,
-  }
+  },
+  {
+    path: '/search/:id',
+    component: Search,
+  },
 ]
 
 const router = new VueRouter({

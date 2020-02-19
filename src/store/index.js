@@ -11,6 +11,7 @@ export default new Vuex.Store({
         newStories: [],
         users: {/* [id: string]: User */},
         items: {/* [id: number]: Item */},
+        search: {/* [id: string]: User */},
     },
     mutations,
     actions

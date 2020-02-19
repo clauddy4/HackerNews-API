@@ -1,14 +1,13 @@
 <template>
   <div class="container">
-    <h2>{{ story.title }}</h2>
     <p>Comments:</p>
-    <div v-for="(comment, idx) in comments" :key="idx">
+    <div v-for="story in comments.hits" :key="story.objectID">
       <div class="comment-wrap">
         <div class="comment-block">
-          <div class="comment-text" v-html="comment.text"></div>
+          <div class="comment-text" v-html="story.comment_text">{{story.comment_text}}</div>
           <div class="bottom-comment">
-            <router-link :to="'/user/' + comment.by"><p class="author">{{ comment.by }}</p></router-link>
-            <div class="date">{{ comment.time | getTime}} ago</div>
+            <router-link :to="'/user/' + story.author"><p class="author">{{ story.author }}</p></router-link>
+            <div class="date">{{ story.created_at }} </div>
           </div>
         </div>
       </div>
@@ -26,18 +25,13 @@
         story: {},
         comments: []
       };
-      },
-      created: function() {
-        axios.get("https://hacker-news.firebaseio.com/v0/item/" + this.$route.params.id + ".json")
-          .then(res => {
-            this.story = res.data;
-            this.story.comments = [];
-            this.story.kids.forEach(id => {
-              axios.get("https://hacker-news.firebaseio.com/v0/item/" + id + ".json")
-                  .then(res => { this.comments.push(res.data);})
-            });
-          })
-      },
+    },
+    created: function() {
+      axios.get("https://hn.algolia.com/api/v1/search?tags=story_" + this.$route.params.id + ",(comment)")
+        .then(res => {
+          this.comments = res.data;
+        })
+    },
     }
 </script>
 
