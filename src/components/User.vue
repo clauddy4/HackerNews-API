@@ -1,16 +1,18 @@
 <template>
-  <div class="user-view">
+  <div class="container">
     <template v-if="user">
       <h2>{{ user.username }}</h2>
-      <p>Created at {{ user.created_at}} ago</p>
+      <p>Created at {{ user.created_at}}</p>
       <p>Karma: {{ user.karma }}</p>
       <p v-html="user.about">{{ user.about }}</p>
+      <br />
+      <p>Comments:</p>
       <div v-for="user in comments.hits" :key="user.objectID">
         <div class="comment-wrap">
           <div class="comment-block">
             <div class="comment-text" v-html="user.comment_text">{{user.comment_text}}</div>
             <div class="bottom-comment">
-              <div class="date">{{ user.created_at }} </div>
+              <div class="date">{{ user.created_at }} <p>to story <a :href="user.story_url" target="_blank">{{user.story_title}}</a></p> </div>
             </div>
           </div>
         </div>
@@ -47,6 +49,6 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss">
 
 </style>
