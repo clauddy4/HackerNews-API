@@ -3,16 +3,24 @@
     <nav class="navbar">
       <router-link class="navbar-item" to="/">Hacker News</router-link>
       <form>
-        <input class="search navbar-item" type="search" placeholder="Search...">
+        <input v-model="message" class="search navbar-item" type="search" placeholder="Search...">
+        <router-link :nessage="message" :to="'/search/' + message"><button>Хоба</button></router-link>
       </form>
     </nav>
   </div>
 </template>
 
 <script>
-    export default {
-        name: "Navbar"
-    }
+
+  export default {
+    name: "Navbar",
+    data: function() {
+      return {
+        message: "",
+        stories: [],
+      };
+    },
+  }
 </script>
 
 <style scoped lang="scss">

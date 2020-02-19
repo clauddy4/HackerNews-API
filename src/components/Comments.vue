@@ -25,13 +25,13 @@
         story: {},
         comments: []
       };
-      },
-      created: function() {
-        axios.get("https://hn.algolia.com/api/v1/search?tags=story_" + this.$route.params.id + ",(comment)")
-          .then(res => {
-            this.comments = res.data;
-          })
-      },
+    },
+    created: function() {
+      axios.get("https://hn.algolia.com/api/v1/search?tags=story_" + this.$route.params.id + ",(comment)")
+        .then(res => {
+          this.comments = res.data;
+        })
+    },
     }
 </script>
 
