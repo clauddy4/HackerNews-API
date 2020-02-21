@@ -48,7 +48,7 @@
       font-size: 18px;
       border-radius: 0 4px 4px 0;
       border-style: none;
-      margin: -24px;
+      margin-left: -24px;
       cursor: pointer;
       height: 23px;
     }
