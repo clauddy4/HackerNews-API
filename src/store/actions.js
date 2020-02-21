@@ -1,24 +1,14 @@
 import axios from "axios";
 
 export default {
-    FETCH_TOP_STORIES: ({ commit }) => {
-        axios.get("https://hacker-news.firebaseio.com/v0/topstories.json")
-            .then(resp => {
-                let results = resp.data;
-                results.forEach(element => {
-                    axios.get(
-                            "https://hacker-news.firebaseio.com/v0/item/" + element + ".json"
-                        )
-                        .then(result => {
-                            commit("APPEND_TOP_STORY", result);
-                        })
-                        .catch(err => {
-                            console.log(err);
-                        });
-                });
-            })
-            .catch(err => {
-                console.log(err);
-            });
+    FETCH_STORIES: ({ commit }) => {
+        axios.get("http://hn.algolia.com/api/v1/search?tags=front_page")
+          .then(response => {
+            let result = response.data;
+          commit("APPEND_STORY", result);
+          })
+          .catch(err => {
+            console.log(err);
+          });
     },
 };

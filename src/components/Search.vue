@@ -4,7 +4,8 @@
     <nav class="toolbar">
       <h2>Search</h2>
       <select class="select" v-model="selectedTag">
-        <option value="">story</option>
+        <option value="">all</option>
+        <option value="story">story</option>
         <option>comment</option>
       </select>
       <h2>by</h2>
@@ -43,7 +44,8 @@
     },
     methods: {
       getItems(id) {
-        axios.get("http://hn.algolia.com/api/v1/search" + this.selectedBy + "?query=" +  id + "&tags=" + this.selectedTag)
+        axios.get("http://hn.algolia.com/api/v1/search"
+            + this.selectedBy + "?query=" +  id + "&tags=" + this.selectedTag)
           .then(response => {
             this.items = response.data;
           });

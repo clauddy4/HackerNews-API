@@ -7,8 +7,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        topStories: [],
-        newStories: [],
+        stories: [],
         users: {/* [id: string]: User */},
         items: {/* [id: number]: Item */},
         search: {/* [id: string]: User */},
