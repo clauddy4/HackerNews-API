@@ -20,6 +20,7 @@
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Tomorrow&display=swap');
+@import url('./style/reset.css');
 
 .app {
   font: normal 14px/22px 'Tomorrow', sans-serif;

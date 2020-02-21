@@ -1,7 +1,20 @@
 <template>
   <div>
-    <h1>SEARCH</h1>
+  <div>
+    <nav class="toolbar">
+      <h2>Search</h2>
+      <select class="select" v-model="selectedTag">
+        <option value="">story</option>
+        <option>comment</option>
+      </select>
+      <h2>by</h2>
+      <select class="select" v-model="selectedBy">
+        <option value="">relevance</option>
+        <option>date</option>
+      </select>
+    </nav>
     <Item v-for="item in items.hits" :key="item.id" :story="item"></Item>
+  </div>
   </div>
 </template>
 
@@ -14,6 +27,8 @@
     data: function() {
       return {
         items: [],
+        selectedTag: '',
+        selectedBy: ''
       };
     },
     components: {
@@ -28,7 +43,7 @@
     },
     methods: {
       getItems(id) {
-        axios.get("http://hn.algolia.com/api/v1/search?query=" +  id + "&tags=story")
+        axios.get("http://hn.algolia.com/api/v1/search?query=" +  id + "&tags=" + this.selectedTag)
           .then(response => {
             this.items = response.data;
           })
@@ -36,14 +51,23 @@
       }
     },
     created: function() {
-      axios.get("http://hn.algolia.com/api/v1/search?query=" + this.$route.params.id  + "&tags=story")
-        .then(response => {
-          this.items = response.data;
-        })
+      this.getItems(this.$route.params.id);
     },
   }
 </script>
 
-<style scoped>
+<style lang="scss">
+  .toolbar {
+    display: flex;
 
+    .select {
+      height: 25px;
+      margin: auto 10px;
+      border-width: 0;
+      border-radius: 4px;
+      background: #e6e6e6;
+      color: #2c3e50;
+      font-size: 16px;
+    }
+  }
 </style>
