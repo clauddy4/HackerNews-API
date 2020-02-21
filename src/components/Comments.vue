@@ -1,13 +1,15 @@
 <template>
-  <div class="container">
+  <div>
     <p>Comments:</p>
-    <div v-for="story in comments.hits" :key="story.objectID">
-      <div class="comment-wrap">
-        <div class="comment-block">
-          <div class="comment-text" v-html="story.comment_text">{{story.comment_text}}</div>
-          <div class="bottom-comment">
-            <router-link :to="'/user/' + story.author"><p class="author">{{ story.author }}</p></router-link>
-            <div class="date">{{ story.created_at }} </div>
+    <div v-for="object in comments" :key="object.id">
+      <div v-for="story in object.hits" :key="story.objectID">
+        <div class="comment-wrap">
+          <div class="comment-block">
+            <div class="comment-text" v-html="story.comment_text">{{story.comment_text}}</div>
+            <div class="bottom-comment">
+              <router-link :to="'/user/' + story.author"><p class="author">{{ story.author }}</p></router-link>
+              <div class="date">{{ story.created_at }} </div>
+            </div>
           </div>
         </div>
       </div>
@@ -16,27 +18,22 @@
 </template>
 
 <script>
-  import axios from 'axios';
 
   export default {
     name: "Comments",
     data: function() {
       return {
         story: {},
-        comments: []
+        comments: this.$store.state.comments,
       };
     },
     created: function() {
-      axios.get("https://hn.algolia.com/api/v1/search?tags=story_" + this.$route.params.id + ",(comment)")
-        .then(res => {
-          this.comments = res.data;
-        })
-    },
+        if (this.$store.state.comments.length === 0)this.$store.dispatch('FETCH_COMMENTS', this.$route.params.id)
+      },
     }
 </script>
 
 <style lang="scss">
-  .container {
 
     h2 {
       font-size: 22px;
@@ -68,7 +65,7 @@
           color: #ff6600;
         }
       }
-    }
+
   }
 
 </style>

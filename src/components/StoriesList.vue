@@ -1,32 +1,27 @@
 <template>
   <div>
-    <Item v-for="story in stories.hits" :key="story.id" :story="story"></Item>
+    <div v-for="object in stories" :key="object.id">
+      <Item v-for="story in object.hits" :key="story.id" :story="story"></Item>
+    </div>
   </div>
 </template>
 
 <script>
-  import axios from "axios";
   import Item from "./Item";
 
   export default {
-    name: 'toriesList',
+    name: 'storiesList',
     components: {
         'Item': Item
     },
     data: function () {
       return {
         err: '',
-        stories: [],
+         stories: this.$store.state.stories,
       }
     },
     created: function () {
-      axios.get("http://hn.algolia.com/api/v1/search?tags=front_page")
-        .then(response => {
-          this.stories = response.data;
-        })
-        .catch(err => {
-          console.log(err);
-        });
+        if (this.$store.state.stories.length === 0)this.$store.dispatch('FETCH_STORIES')
     },
   }
 </script>
