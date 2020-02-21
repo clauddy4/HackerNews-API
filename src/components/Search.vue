@@ -47,6 +47,7 @@
           .then(response => {
             this.items = response.data;
           })
+        return this.items;
       }
     },
     created: function() {
