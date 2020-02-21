@@ -47,14 +47,10 @@
           .then(response => {
             this.items = response.data;
           })
-        return this.items;
       }
     },
     created: function() {
-      axios.get("http://hn.algolia.com/api/v1/search?query=" + this.$route.params.id  + "&tags=" + this.selectedTag)
-        .then(response => {
-          this.items = response.data;
-        })
+      this.getItems(this.$route.params.id);
     },
   }
 </script>

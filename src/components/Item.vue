@@ -3,9 +3,17 @@
       <span class="points">{{ story.points }}</span>
       <a :href="story.url" target="_blank"><h1 class="title">{{ story.title }}</h1></a>
       <p v-html="story.comment_text">{{story.comment_text}}</p>
-      <span class="meta">
-        by <router-link class="author" :to="'/user/' + story.author">{{ story.author }}</router-link> {{ story.created_at }}
-        <router-link v-if="story.title" class="comments" :to="{path:'/comments/' + story.objectID}"><span class="comments-title">Comments</span></router-link >
+
+      <span class="meta">by
+        <router-link class="author" :to="'/user/' + story.author">{{ story.author }}</router-link> {{story.created_at}}
+
+        <span v-if="story.story_title">
+            | to story: <a :href="story.story_url" target="_blank">{{story.story_title}}</a>
+        </span>
+
+        <router-link v-if="story.title" class="comments" :to="{path:'/comments/' + story.objectID}">
+            <span class="comments-title">Comments</span>
+        </router-link>
       </span>
     </div>
 </template>
@@ -40,18 +48,18 @@
       }
 
       .title {
-          font-size: 15px;
+        font-size: 15px;
+        color: #2c3e50;
       }
 
       a {
-        color: #34495e;
         font-weight: 600;
         text-decoration: none;
       }
       a span {
         color: #828282;
       }
-      .meta .comments{
+      .meta .comments {
         font-size: 0.85em;
         color: #828282;
       }
