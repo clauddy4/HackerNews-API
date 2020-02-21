@@ -8,10 +8,11 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         stories: [],
-        comments: [],
-        users: {/* [id: string]: User */},
+        storyComments: [],
+        usersComments: [],
+        users: [/* [id: string]: User */],
         items: {/* [id: number]: Item */},
-        search: {/* [id: string]: User */},
+        search: {/* [id: string]: Item */},
     },
     mutations,
     actions

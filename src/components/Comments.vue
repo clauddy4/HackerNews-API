@@ -2,13 +2,13 @@
   <div>
     <p>Comments:</p>
     <div v-for="object in comments" :key="object.id">
-      <div v-for="story in object.hits" :key="story.objectID">
+      <div v-for="comment in object.hits" :key="comment.objectID">
         <div class="comment-wrap">
           <div class="comment-block">
-            <div class="comment-text" v-html="story.comment_text">{{story.comment_text}}</div>
+            <div class="comment-text" v-html="comment.comment_text">{{comment.comment_text}}</div>
             <div class="bottom-comment">
-              <router-link :to="'/user/' + story.author"><p class="author">{{ story.author }}</p></router-link>
-              <div class="date">{{ story.created_at }} </div>
+              <router-link :to="'/user/' + comment.author"><p class="author">{{ comment.author }}</p></router-link>
+              <div class="date">{{ comment.created_at | toNormalTime}} </div>
             </div>
           </div>
         </div>
@@ -23,12 +23,12 @@
     name: "Comments",
     data: function() {
       return {
-        story: {},
-        comments: this.$store.state.comments,
+        comment: {},
+        comments: this.$store.state.storyComments,
       };
     },
     created: function() {
-        if (this.$store.state.comments.length === 0)this.$store.dispatch('FETCH_COMMENTS', this.$route.params.id)
+        if (this.$store.state.storyComments.length === 0)this.$store.dispatch('FETCH_STORY_COMMENTS', this.$route.params.id)
       },
     }
 </script>
