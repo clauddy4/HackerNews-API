@@ -1,6 +1,7 @@
 <template>
   <div class="story">
-      <span class="points">{{ story.points }}</span>
+      <span v-if="story.points" class="points">{{ story.points }}</span>
+      <span v-else class="points">0</span>
       <a :href="story.url" target="_blank"><h1 class="title">{{ story.title }}</h1></a>
       <p v-html="story.comment_text">{{story.comment_text}}</p>
 

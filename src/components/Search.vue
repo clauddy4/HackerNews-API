@@ -10,7 +10,7 @@
       <h2>by</h2>
       <select class="select" v-model="selectedBy">
         <option value="">relevance</option>
-        <option>date</option>
+        <option value="_by_date">date</option>
       </select>
     </nav>
     <Item v-for="item in items.hits" :key="item.id" :story="item"></Item>
@@ -28,7 +28,7 @@
       return {
         items: [],
         selectedTag: '',
-        selectedBy: ''
+        selectedBy: '',
       };
     },
     components: {
@@ -43,10 +43,10 @@
     },
     methods: {
       getItems(id) {
-        axios.get("http://hn.algolia.com/api/v1/search?query=" +  id + "&tags=" + this.selectedTag)
+        axios.get("http://hn.algolia.com/api/v1/search" + this.selectedBy + "?query=" +  id + "&tags=" + this.selectedTag)
           .then(response => {
             this.items = response.data;
-          })
+          });
         return this.items;
       }
     },
