@@ -4,7 +4,6 @@
     <nav class="toolbar">
       <h2>Search</h2>
       <select class="select" v-model="selectedTag">
-        <option value="">all</option>
         <option value="story">story</option>
         <option>comment</option>
       </select>
@@ -26,7 +25,7 @@
     name: "Search",
     data: function() {
       return {
-        selectedTag: '',
+        selectedTag: 'story',
         selectedBy: '',
       };
     },
@@ -45,18 +44,24 @@
         this.items = this.$store.dispatch('FETCH_SEARCH_RESULTS', {id, tag: this.selectedTag, by: this.selectedBy })
         return this.items;
       },
-      updateItems(state, newItems) {
-          state.searchResults = newItems;
-      }
+      // updateItems(state, newItems) {
+      //     state.searchResults = newItems;
+      //     this.getItems(id);
+      // }
     },
     created: function() {
       this.getItems(this.$route.params.id);
     },
     computed: {
-      items() {
-        return this.$store.state.searchResults;
-      },
-    },
+      items: {
+        get () {
+            return this.$store.state.searchResults;
+        },
+        set (value) {
+            this.$store.commit("APPEND_SEARCH_RESULTS", value);
+        }
+      }
+    }
   }
 </script>
 
