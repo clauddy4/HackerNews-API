@@ -8,8 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         stories: [],
-        storyComments: [],
-        usersComments: [],
+        comments: [],
         user: [/* [id: string]: User */],
         searchResults: {/* [id: string]: Item */},
     },

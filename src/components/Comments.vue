@@ -22,14 +22,15 @@
     data: function() {
       return {
         comment: {},
+        tag: "story",
       };
     },
     created: function() {
-        this.$store.dispatch('FETCH_STORY_COMMENTS', this.$route.params.id )
+        this.$store.dispatch('FETCH_COMMENTS', {id: this.$route.params.id, tag: this.tag })
     },
     computed: {
         comments() {
-            return this.$store.state.storyComments;
+            return this.$store.state.comments;
         },
     },
   }

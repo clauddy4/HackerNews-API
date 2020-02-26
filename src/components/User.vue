@@ -30,11 +30,12 @@
     name: 'User',
     data: function() {
       return {
+        tag: "author",
       }
     },
     computed: {
         comments() {
-            return this.$store.state.usersComments;
+            return this.$store.state.comments;
         },
         user () {
             return this.$store.state.user;
@@ -43,7 +44,7 @@
     created: function() {
 
         this.$store.dispatch('FETCH_USER', this.$route.params.id);
-        this.$store.dispatch('FETCH_USERS_COMMENTS', this.$route.params.id);
+        this.$store.dispatch('FETCH_COMMENTS', {id: this.$route.params.id, tag: this.tag })
     },
   }
 </script>
