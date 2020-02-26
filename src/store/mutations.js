@@ -10,4 +10,8 @@ export default {
     APPEND_USER: (state, user) => {
         state.user = user;
     },
+
+    APPEND_SEARCH_RESULTS: (state, results) => {
+        state.searchResults = results;
+    },
 };

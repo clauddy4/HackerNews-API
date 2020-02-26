@@ -14,20 +14,18 @@
         <option value="_by_date">date</option>
       </select>
     </nav>
-    <Item v-for="item in items.hits" :key="item.id" :story="item"></Item>
+    <Item v-for="item in items" :key="item.id" :story="item"></Item>
   </div>
   </div>
 </template>
 
 <script>
-  import axios from "axios";
   import Item from "./Item";
 
   export default {
     name: "Search",
     data: function() {
       return {
-        items: [],
         selectedTag: '',
         selectedBy: '',
       };
@@ -44,16 +42,20 @@
     },
     methods: {
       getItems(id) {
-        axios.get("http://hn.algolia.com/api/v1/search"
-            + this.selectedBy + "?query=" +  id + "&tags=" + this.selectedTag)
-          .then(response => {
-            this.items = response.data;
-          });
+        this.items = this.$store.dispatch('FETCH_SEARCH_RESULTS', {id, tag: this.selectedTag, by: this.selectedBy })
         return this.items;
+      },
+      updateItems(state, newItems) {
+          state.searchResults = newItems;
       }
     },
     created: function() {
       this.getItems(this.$route.params.id);
+    },
+    computed: {
+      items() {
+        return this.$store.state.searchResults;
+      },
     },
   }
 </script>

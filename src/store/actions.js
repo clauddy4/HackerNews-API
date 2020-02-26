@@ -33,4 +33,15 @@ export default {
                 console.log(err);
             });
     },
+
+    FETCH_SEARCH_RESULTS: ({ commit }, {id, tag, by}) => {
+        axios.get("http://hn.algolia.com/api/v1/search" + by + "?query=" +  id + "&tags=" + tag)
+            .then(response => {
+                let result = response.data.hits;
+                commit("APPEND_SEARCH_RESULTS", result);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    },
 };
