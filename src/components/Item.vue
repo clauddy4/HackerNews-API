@@ -13,7 +13,7 @@
         </span>
 
         <router-link v-if="story.title" class="comments" :to="{path:'/comments/' + story.objectID}">
-            <span class="comments-title">Comments</span>
+            <span class="comments-title">{{story.num_comments}} Comments</span>
         </router-link>
       </span>
     </div>

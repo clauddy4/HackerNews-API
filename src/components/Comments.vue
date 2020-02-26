@@ -1,8 +1,7 @@
 <template>
   <div>
     <p>Comments:</p>
-    <div v-for="object in comments" :key="object.id">
-      <div v-for="comment in object.hits" :key="comment.objectID">
+      <div v-for="comment in comments" :key="comment.id">
         <div class="comment-wrap">
           <div class="comment-block">
             <div class="comment-text" v-html="comment.comment_text">{{comment.comment_text}}</div>
@@ -14,7 +13,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -24,13 +22,17 @@
     data: function() {
       return {
         comment: {},
-        comments: this.$store.state.storyComments,
       };
     },
     created: function() {
-        if (this.$store.state.storyComments.length === 0)this.$store.dispatch('FETCH_STORY_COMMENTS', this.$route.params.id)
-      },
-    }
+        this.$store.dispatch('FETCH_STORY_COMMENTS', this.$route.params.id )
+    },
+    computed: {
+        comments() {
+            return this.$store.state.storyComments;
+        },
+    },
+  }
 </script>
 
 <style lang="scss">

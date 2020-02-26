@@ -4,7 +4,7 @@ export default {
     FETCH_STORIES: ({ commit }) => {
         axios.get("http://hn.algolia.com/api/v1/search?tags=front_page")
             .then(response => {
-                let result = response.data;
+                let result = response.data.hits;
                 commit("APPEND_STORY", result);
             })
         .catch(err => {
@@ -15,7 +15,7 @@ export default {
     FETCH_STORY_COMMENTS: ({ commit }, id) => {
         axios.get("https://hn.algolia.com/api/v1/search?tags=story_" + id + ",(comment)")
             .then(response => {
-                let result = response.data;
+                let result = response.data.hits;
                 commit("APPEND_STORY_COMMENT", result);
             })
             .catch(err => {

@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div v-for="object in stories" :key="object.id">
-      <Item v-for="story in object.hits" :key="story.id" :story="story"></Item>
-    </div>
+    <Item v-for="story in stories" :key="story.id" :story="story"></Item>
   </div>
 </template>
 
@@ -17,11 +15,16 @@
     data: function () {
       return {
         err: '',
-         stories: this.$store.state.stories,
       }
     },
     created: function () {
-        if (this.$store.state.stories.length === 0)this.$store.dispatch('FETCH_STORIES')
+        this.$store.dispatch('FETCH_STORIES');
+        console.log(this.$store.state.stories);
+    },
+    computed: {
+      stories() {
+        return this.$store.state.stories;
+      },
     },
   }
 </script>
