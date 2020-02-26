@@ -19,7 +19,6 @@
     },
     created: function () {
         this.$store.dispatch('FETCH_STORIES');
-        console.log(this.$store.state.stories);
     },
     computed: {
       stories() {

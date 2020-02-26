@@ -26,8 +26,19 @@ export default {
     FETCH_USERS_COMMENTS: ({ commit }, id) => {
         axios.get("https://hn.algolia.com/api/v1/search?tags=author_" + id + ",(comment)")
             .then(response => {
-                let result = response.data;
+                let result = response.data.hits;
                 commit("APPEND_USERS_COMMENT", result);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    },
+
+    FETCH_USER: ({ commit }, id) => {
+        axios.get("http://hn.algolia.com/api/v1/users/" + id )
+            .then(response => {
+                let result = response.data;
+                commit("APPEND_USER", result);
             })
             .catch(err => {
                 console.log(err);

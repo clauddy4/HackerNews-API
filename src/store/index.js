@@ -10,7 +10,7 @@ export default new Vuex.Store({
         stories: [],
         storyComments: [],
         usersComments: [],
-        users: [/* [id: string]: User */],
+        user: [/* [id: string]: User */],
         searchResults: {/* [id: string]: Item */},
     },
     mutations,
