@@ -1,6 +1,6 @@
 export default {
     APPEND_STORY: (state, articles) => {
-        state.stories = articles;
+        state.results = articles;
     },
 
     APPEND_COMMENT: (state, comments) => {
@@ -12,6 +12,6 @@ export default {
     },
 
     APPEND_SEARCH_RESULTS: (state, results) => {
-        state.searchResults = results;
+        state.results = results;
     },
 };
