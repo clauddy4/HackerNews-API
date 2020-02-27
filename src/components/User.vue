@@ -45,7 +45,10 @@
     created: function() {
 
         this.$store.dispatch('FETCH_USER', this.$route.params.id);
-        this.$store.dispatch('FETCH_COMMENTS', {id: this.$route.params.id, tag: this.tag })
+        this.$store.dispatch('FETCH_COMMENTS', {
+          id: this.$route.params.id,
+          tag: this.tag
+        })
     },
   }
 </script>

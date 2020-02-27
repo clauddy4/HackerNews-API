@@ -26,7 +26,10 @@
       };
     },
     created: function() {
-        this.$store.dispatch('FETCH_COMMENTS', {id: this.$route.params.id, tag: this.tag })
+        this.$store.dispatch('FETCH_COMMENTS', {
+          id: this.$route.params.id,
+          tag: this.tag
+        })
     },
     computed: {
         comments() {

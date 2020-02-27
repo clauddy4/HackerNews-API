@@ -7,7 +7,8 @@
       <p v-html="item.comment_text">{{item.comment_text}}</p>
 
       <span class="meta">by
-        <router-link class="author" :to="'/user/' + item.author">{{ item.author }}</router-link> {{item.created_at | toNormalTime}}
+        <router-link class="author" :to="'/user/' + item.author">{{ item.author }}</router-link>
+        {{item.created_at | toNormalTime}}
 
         <span v-if="item.story_title">
             | to story: <a :href="item.story_url" target="_blank">{{item.story_title}}</a>
