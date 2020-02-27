@@ -3,8 +3,8 @@
     <nav class="navbar">
       <router-link class="navbar-item" to="/">Hacker News</router-link>
       <form>
-        <input v-model="message" class="search navbar-item" type="search" placeholder="Search...">
-        <router-link :nessage="message" :to="'/search/' + message"><button class="button" type="submit">&#9658;</button></router-link>
+        <input v-model="query" class="search navbar-item" type="search" placeholder="Search...">
+        <router-link :query="query" :to="'/search/' + query"><button class="button" type="submit">&#9658;</button></router-link>
       </form>
     </nav>
   </div>
@@ -16,7 +16,7 @@
     name: "Navbar",
     data: function() {
       return {
-        message: "",
+        query: "",
         stories: [],
       };
     },

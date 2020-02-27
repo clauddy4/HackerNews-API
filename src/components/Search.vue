@@ -41,13 +41,10 @@
     },
     methods: {
       getItems(id) {
-        this.items = this.$store.dispatch('FETCH_SEARCH_RESULTS', {id, tag: this.selectedTag, by: this.selectedBy })
+        if (id == undefined) id = this.$route.params.id;
+        this.items = this.$store.dispatch('FETCH_SEARCH_RESULTS', {id, tag: this.selectedTag, by: this.selectedBy });
         return this.items;
       },
-      // updateItems(state, newItems) {
-      //     state.searchResults = newItems;
-      //     this.getItems(id);
-      // }
     },
     created: function() {
       this.getItems(this.$route.params.id);
