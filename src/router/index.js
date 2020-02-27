@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import StoriesList from '../components/StoriesList.vue'
 import Comments from "../components/Comments";
 import User from "../components/User";
-import Search from "../components/Search";
 
 Vue.use(VueRouter)
 
@@ -23,8 +22,8 @@ const routes = [
     component: User,
   },
   {
-    path: '/search/:id',
-    component: Search,
+    path: '/:id',
+    component: StoriesList,
   },
 ]
 

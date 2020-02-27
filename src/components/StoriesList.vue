@@ -1,6 +1,27 @@
 <template>
   <div>
-    <Item v-for="story in stories" :key="story.id" :story="story"></Item>
+    <div class="searchBar">
+      <form>
+        <input v-model="query" class="text-field navbar-item" type="search" placeholder="Search...">
+        <router-link :query="query" :to="'/' + query"><button @click="getItems(query)" class="button" type="submit">&#9658;</button></router-link>
+      </form>
+
+      <select @change="getItems(query)" class="select" v-model="selectedTag">
+        <option value="story">story</option>
+        <option>comment</option>
+      </select>
+      <h3>by</h3>
+      <select @change="getItems(query)" class="select" v-model="selectedBy">
+        <option value="">relevance</option>
+        <option value="_by_date">date</option>
+      </select>
+      <h3>from</h3>
+      <input v-model="points" @change="getItems(query)" class="text-field navbar-item points" type="search" placeholder="0">
+      <h3>points</h3>
+    </div>
+
+    <Item v-for="item in items" :key="item.id" :item="item"></Item>
+
   </div>
 </template>
 
@@ -14,19 +35,76 @@
     },
     data: function () {
       return {
-        err: '',
+        selectedTag: 'story',
+        selectedBy: '',
+        query: '',
+        points: 0,
       }
     },
     created: function () {
         this.$store.dispatch('FETCH_STORIES');
     },
     computed: {
-      stories() {
-        return this.$store.state.stories;
+      items: {
+        get () {
+          return this.$store.state.results;
+        },
+        set (value) {
+          this.$store.commit("APPEND_SEARCH_RESULTS", value);
+        }
+      }
+    },
+    methods: {
+      getItems(id) {
+        if (id !== '') {
+          console.log( this.points );
+          this.items = this.$store.dispatch('FETCH_SEARCH_RESULTS', {id: id, tag: this.selectedTag, sort: this.selectedBy, points: this.points });
+          return this.items;
+        }
       },
     },
   }
 </script>
 
 <style scoped lang="scss">
+  .searchBar {
+    display: flex;
+
+    .select, .text-field{
+      height: 25px;
+      margin: auto 10px;
+      border-width: 0;
+      border-radius: 4px 0 0 4px;
+      background: #e6e6e6;
+      color: #2c3e50;
+      font-size: 16px;
+    }
+
+    .text-field {
+      margin-top: 12px;
+    }
+
+    .points {
+      width: 60px;
+      padding-left: 4px;
+    }
+
+    .button {
+      position: relative;
+      right: 9px;
+      bottom: 3px;
+      background: #e6e6e6;
+      color: #828282;
+      font-size: 8px;
+      border-radius: 0 4px 4px 0;
+      border-style: none;
+      cursor: pointer;
+      height: 25px;
+      width: 25px;
+    }
+
+    .button:hover {
+      color: #2c3e50;
+    }
+  }
 </style>

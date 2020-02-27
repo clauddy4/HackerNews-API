@@ -1,11 +1,7 @@
 <template>
   <div class="navbar-container">
     <nav class="navbar">
-      <router-link class="navbar-item" to="/">Hacker News</router-link>
-      <form>
-        <input v-model="query" class="search navbar-item" type="search" placeholder="Search...">
-        <router-link :query="query" :to="'/search/' + query"><button class="button" type="submit">&#9658;</button></router-link>
-      </form>
+      <button class="navbar-item button" onclick='window.location.reload()'><router-link to="/">Hacker News</router-link></button>
     </nav>
   </div>
 </template>
@@ -16,7 +12,6 @@
     name: "Navbar",
     data: function() {
       return {
-        query: "",
         stories: [],
       };
     },
@@ -33,29 +28,11 @@
       margin: 24px 24px 0 0;
     }
 
-    .search {
-      border-width: 0;
-      border-radius: 4px 0 0 4px;
-      padding: 4px;
-      background: #e6e6e6;
-    }
-
     .button {
-      position: relative;
-      top: 1px;
-      background: #e6e6e6;
-      color: #828282;
-      font-size: 18px;
-      border-radius: 0 4px 4px 0;
-      border-style: none;
-      margin-left: -24px;
-      cursor: pointer;
-      height: 23px;
+      background-color: #2c3e50;
+      font: normal 14px/22px 'Tomorrow', sans-serif;
     }
 
-    .button:hover {
-      color: #2c3e50;
-    }
   }
 
 

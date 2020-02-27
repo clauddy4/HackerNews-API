@@ -1,20 +1,20 @@
 <template>
   <div class="story">
     <div>
-      <span v-if="story.points" class="points">{{ story.points }}</span>
+      <span v-if="item.points" class="points">{{ item.points }}</span>
       <span v-else class="points">0</span>
-      <a :href="story.url" target="_blank"><h1 class="title">{{ story.title }}</h1></a>
-      <p v-html="story.comment_text">{{story.comment_text}}</p>
+      <a :href="item.url" target="_blank"><h1 class="title">{{ item.title }}</h1></a>
+      <p v-html="item.comment_text">{{item.comment_text}}</p>
 
       <span class="meta">by
-        <router-link class="author" :to="'/user/' + story.author">{{ story.author }}</router-link> {{story.created_at | toNormalTime}}
+        <router-link class="author" :to="'/user/' + item.author">{{ item.author }}</router-link> {{item.created_at | toNormalTime}}
 
-        <span v-if="story.story_title">
-            | to story: <a :href="story.story_url" target="_blank">{{story.story_title}}</a>
+        <span v-if="item.story_title">
+            | to story: <a :href="item.story_url" target="_blank">{{item.story_title}}</a>
         </span>
 
-        <router-link v-if="story.title" class="comments" :to="{path:'/comments/' + story.objectID}">
-            <span class="comments-title">{{story.num_comments}} Comments</span>
+        <router-link v-if="item.title" class="comments" :to="{path:'/comments/' + item.objectID}">
+            <span class="comments-title">{{item.num_comments}} Comments</span>
         </router-link>
       </span>
     </div>
@@ -25,7 +25,7 @@
   export default {
     name: "Item",
     props: [
-        'story'
+        'item'
     ]
   }
 </script>
