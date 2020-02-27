@@ -1,21 +1,44 @@
 import axios from "axios";
 
 export default {
-    FETCH_TOP_STORIES: ({ commit }) => {
-        axios.get("https://hacker-news.firebaseio.com/v0/topstories.json")
-            .then(resp => {
-                let results = resp.data;
-                results.forEach(element => {
-                    axios.get(
-                            "https://hacker-news.firebaseio.com/v0/item/" + element + ".json"
-                        )
-                        .then(result => {
-                            commit("APPEND_TOP_STORY", result);
-                        })
-                        .catch(err => {
-                            console.log(err);
-                        });
-                });
+    FETCH_STORIES: ({ commit }) => {
+        axios.get("http://hn.algolia.com/api/v1/search?tags=front_page")
+            .then(response => {
+                let result = response.data.hits;
+                commit("APPEND_STORY", result);
+            })
+        .catch(err => {
+            console.log(err);
+        });
+    },
+
+    FETCH_COMMENTS: ({ commit }, {id, tag}) => {
+        axios.get("https://hn.algolia.com/api/v1/search?tags=" + tag + "_" + id + ",(comment)")
+            .then(response => {
+                let result = response.data.hits;
+                commit("APPEND_COMMENT", result);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    },
+
+    FETCH_USER: ({ commit }, id) => {
+        axios.get("http://hn.algolia.com/api/v1/users/" + id )
+            .then(response => {
+                let result = response.data;
+                commit("APPEND_USER", result);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    },
+
+    FETCH_SEARCH_RESULTS: ({ commit }, {id, tag, by}) => {
+        axios.get("http://hn.algolia.com/api/v1/search" + by + "?query=" +  id + "&tags=" + tag)
+            .then(response => {
+                let result = response.data.hits;
+                commit("APPEND_SEARCH_RESULTS", result);
             })
             .catch(err => {
                 console.log(err);

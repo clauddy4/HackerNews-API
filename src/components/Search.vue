@@ -4,31 +4,29 @@
     <nav class="toolbar">
       <h2>Search</h2>
       <select class="select" v-model="selectedTag">
-        <option value="">story</option>
+        <option value="story">story</option>
         <option>comment</option>
       </select>
       <h2>by</h2>
       <select class="select" v-model="selectedBy">
         <option value="">relevance</option>
-        <option>date</option>
+        <option value="_by_date">date</option>
       </select>
     </nav>
-    <Item v-for="item in items.hits" :key="item.id" :story="item"></Item>
+    <Item v-for="item in items" :key="item.id" :story="item"></Item>
   </div>
   </div>
 </template>
 
 <script>
-  import axios from "axios";
   import Item from "./Item";
 
   export default {
     name: "Search",
     data: function() {
       return {
-        items: [],
-        selectedTag: '',
-        selectedBy: ''
+        selectedTag: 'story',
+        selectedBy: '',
       };
     },
     components: {
@@ -43,16 +41,24 @@
     },
     methods: {
       getItems(id) {
-        axios.get("http://hn.algolia.com/api/v1/search?query=" +  id + "&tags=" + this.selectedTag)
-          .then(response => {
-            this.items = response.data;
-          })
+        if (id == undefined) id = this.$route.params.id;
+        this.items = this.$store.dispatch('FETCH_SEARCH_RESULTS', {id, tag: this.selectedTag, by: this.selectedBy });
         return this.items;
-      }
+      },
     },
     created: function() {
       this.getItems(this.$route.params.id);
     },
+    computed: {
+      items: {
+        get () {
+            return this.$store.state.searchResults;
+        },
+        set (value) {
+            this.$store.commit("APPEND_SEARCH_RESULTS", value);
+        }
+      }
+    }
   }
 </script>
 

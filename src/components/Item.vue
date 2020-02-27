@@ -1,21 +1,24 @@
 <template>
   <div class="story">
-      <span class="points">{{ story.points }}</span>
+    <div>
+      <span v-if="story.points" class="points">{{ story.points }}</span>
+      <span v-else class="points">0</span>
       <a :href="story.url" target="_blank"><h1 class="title">{{ story.title }}</h1></a>
       <p v-html="story.comment_text">{{story.comment_text}}</p>
 
       <span class="meta">by
-        <router-link class="author" :to="'/user/' + story.author">{{ story.author }}</router-link> {{story.created_at}}
+        <router-link class="author" :to="'/user/' + story.author">{{ story.author }}</router-link> {{story.created_at | toNormalTime}}
 
         <span v-if="story.story_title">
             | to story: <a :href="story.story_url" target="_blank">{{story.story_title}}</a>
         </span>
 
         <router-link v-if="story.title" class="comments" :to="{path:'/comments/' + story.objectID}">
-            <span class="comments-title">Comments</span>
+            <span class="comments-title">{{story.num_comments}} Comments</span>
         </router-link>
       </span>
     </div>
+  </div>
 </template>
 
 <script>

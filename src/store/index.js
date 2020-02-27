@@ -7,12 +7,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        topStories: [],
-        newStories: [],
-        users: {/* [id: string]: User */},
-        items: {/* [id: number]: Item */},
-        search: {/* [id: string]: User */},
+        stories: [],
+        comments: [],
+        user: [/* [id: string]: User */],
+        searchResults: {/* [id: string]: Item */},
     },
     mutations,
-    actions
+    actions,
 });

@@ -1,10 +1,17 @@
-// import Vue from 'vue'
-
 export default {
-    APPEND_TOP_STORY: (state, article) => {
-        state.topStories.push(article);
+    APPEND_STORY: (state, articles) => {
+        state.stories = articles;
     },
-    APPEND_NEW_STORY: (state, article) => {
-        state.newStories.push(article);
-    }
+
+    APPEND_COMMENT: (state, comments) => {
+        state.comments = comments;
+    },
+
+    APPEND_USER: (state, user) => {
+        state.user = user;
+    },
+
+    APPEND_SEARCH_RESULTS: (state, results) => {
+        state.searchResults = results;
+    },
 };
