@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import StoriesList from '../components/StoriesList.vue'
-import Comments from "../components/Comments";
+import StoryComments from "../components/StoryComments";
 import User from "../components/User";
 
 Vue.use(VueRouter)
@@ -15,7 +15,7 @@ const routes = [
   {
     path: '/comments/:id',
     name: 'Comments',
-    component: Comments,
+    component: StoryComments,
   },
   {
     path: '/user/:id',
