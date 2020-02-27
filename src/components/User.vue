@@ -10,9 +10,13 @@
         <div v-for="comment in comments" :key="comment.id">
           <div class="comment-wrap">
             <div class="comment-block">
-              <div class="comment-text" v-html="comment.comment_text">{{comment.comment_text}}</div>
+              <div class="comment-text" v-html="comment.comment_text">
+                {{comment.comment_text}}
+              </div>
               <div class="bottom-comment">
-                <div class="date">{{ comment.created_at | toNormalTime}} <p>to story <a :href="comment.story_url" target="_blank">{{comment.story_title}}</a></p> </div>
+                <div class="date">{{ comment.created_at | toNormalTime}}
+                  <p>to story <a :href="comment.story_url" target="_blank">{{comment.story_title}}</a></p>
+                </div>
               </div>
             </div>
           </div>
@@ -36,10 +40,10 @@
     },
     computed: {
         comments() {
-            return this.$store.state.comments;
+          return this.$store.state.comments;
         },
         user () {
-            return this.$store.state.user;
+          return this.$store.state.user;
         },
     },
     created: function() {

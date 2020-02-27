@@ -11,11 +11,11 @@
         {{item.created_at | toNormalTime}}
 
         <span v-if="item.story_title">
-            | to story: <a :href="item.story_url" target="_blank">{{item.story_title}}</a>
+          | to story: <a :href="item.story_url" target="_blank">{{item.story_title}}</a>
         </span>
 
         <router-link v-if="item.title" class="comments" :to="{path:'/comments/' + item.objectID}">
-            <span class="comments-title">{{item.num_comments}} Comments</span>
+          <span class="comments-title">{{item.num_comments}} Comments</span>
         </router-link>
       </span>
     </div>

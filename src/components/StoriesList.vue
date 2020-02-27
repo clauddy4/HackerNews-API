@@ -2,7 +2,7 @@
   <div>
     <div class="searchBar">
       <form>
-        <input v-model="query" class="text-field" type="search" placeholder="Search...">
+        <input v-model="query" class="text-field" type="search" placeholder="Search..." />
         <router-link :query="query" :to="'/' + query">
           <button @click="getItems(query)" class="button" type="submit">&#9658;</button>
         </router-link>
@@ -12,13 +12,15 @@
         <option value="story">story</option>
         <option>comment</option>
       </select>
+
       <h3>by </h3>
       <select @change="getItems(query)" class="select" v-model="selectedBy">
         <option value="">relevance</option>
         <option value="_by_date">date</option>
       </select>
+
       <h3>from</h3>
-      <input v-model="points" @change="getItems(query)" class="text-field navbar-item points" type="search" placeholder="0">
+      <input v-model="points" @change="getItems(query)" class="text-field navbar-item points" type="search" placeholder="0" />
       <h3>points</h3>
     </div>
 
@@ -33,7 +35,7 @@
   export default {
     name: 'storiesList',
     components: {
-        'Item': Item
+      'Item': Item
     },
     data: function () {
       return {
@@ -61,10 +63,10 @@
         if (id !== '') {
           if (this.points == '') this.points = 0;
           this.items = this.$store.dispatch('FETCH_SEARCH_RESULTS', {
-              id: id,
-              tag: this.selectedTag,
-              sort:  this.selectedBy,
-              points: this.points,
+            id: id,
+            tag: this.selectedTag,
+            sort:  this.selectedBy,
+            points: this.points,
           });
           return this.items;
         }

@@ -13,7 +13,8 @@ export default {
     },
 
     FETCH_COMMENTS: ({ commit }, {id, tag}) => {
-        axios.get("https://hn.algolia.com/api/v1/search?tags=" + tag + "_" + id + ",(comment)")
+        axios.get("https://hn.algolia.com/api/v1/search?tags="
+          + tag + "_" + id + ",(comment)")
         .then(response => {
             let result = response.data.hits;
             commit("APPEND_COMMENT", result);
@@ -35,7 +36,8 @@ export default {
     },
 
     FETCH_SEARCH_RESULTS: ({ commit }, {id, tag, sort, points}) => {
-        axios.get("http://hn.algolia.com/api/v1/search" + sort + "?query=" +  id + "&tags=" + tag + "&numericFilters=points>" + points)
+        axios.get("http://hn.algolia.com/api/v1/search"
+          + sort + "?query=" +  id + "&tags=" + tag + "&numericFilters=points>" + points)
         .then(response => {
             let result = response.data.hits;
             commit("APPEND_SEARCH_RESULTS", result);

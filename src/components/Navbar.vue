@@ -1,6 +1,8 @@
 <template>
   <div class="navbar">
-      <button class="navbar-item button" onclick='window.location.reload()'><router-link to="/">Hacker News</router-link></button>
+    <button class="navbar-item button" onclick='window.location.reload()'>
+      <router-link to="/">Hacker News</router-link>
+    </button>
   </div>
 </template>
 
@@ -8,11 +10,6 @@
 
   export default {
     name: "Navbar",
-    data: function() {
-      return {
-        stories: [],
-      };
-    },
   }
 </script>
 
@@ -32,6 +29,4 @@
     }
 
   }
-
-
 </style>

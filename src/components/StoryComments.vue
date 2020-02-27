@@ -4,9 +4,13 @@
       <div v-for="comment in comments" :key="comment.id">
         <div class="comment-wrap">
           <div class="comment-block">
-            <div class="comment-text" v-html="comment.comment_text">{{comment.comment_text}}</div>
+            <div class="comment-text" v-html="comment.comment_text">
+              {{comment.comment_text}}
+            </div>
             <div class="bottom-comment">
-              <router-link :to="'/user/' + comment.author"><p class="author">{{ comment.author }}</p></router-link>
+              <router-link :to="'/user/' + comment.author">
+                <p class="author">{{ comment.author }}</p>
+              </router-link>
               <div class="date">{{ comment.created_at | toNormalTime}} </div>
             </div>
           </div>
