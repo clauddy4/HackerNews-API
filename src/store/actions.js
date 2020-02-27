@@ -34,8 +34,8 @@ export default {
             });
     },
 
-    FETCH_SEARCH_RESULTS: ({ commit }, {id, tag, by}) => {
-        axios.get("http://hn.algolia.com/api/v1/search" + by + "?query=" +  id + "&tags=" + tag)
+    FETCH_SEARCH_RESULTS: ({ commit }, {id, tag, sort, points}) => {
+        axios.get("http://hn.algolia.com/api/v1/search" + sort + "?query=" +  id + "&tags=" + tag + "&numericFilters=points>" + points)
             .then(response => {
                 let result = response.data.hits;
                 commit("APPEND_SEARCH_RESULTS", result);
