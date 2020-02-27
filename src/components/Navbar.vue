@@ -1,8 +1,6 @@
 <template>
-  <div class="navbar-container">
-    <nav class="navbar">
+  <div class="navbar">
       <button class="navbar-item button" onclick='window.location.reload()'><router-link to="/">Hacker News</router-link></button>
-    </nav>
   </div>
 </template>
 

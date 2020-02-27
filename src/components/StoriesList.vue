@@ -2,15 +2,17 @@
   <div>
     <div class="searchBar">
       <form>
-        <input v-model="query" class="text-field navbar-item" type="search" placeholder="Search...">
-        <router-link :query="query" :to="'/' + query"><button @click="getItems(query)" class="button" type="submit">&#9658;</button></router-link>
+        <input v-model="query" class="text-field" type="search" placeholder="Search...">
+        <router-link :query="query" :to="'/' + query">
+          <button @click="getItems(query)" class="button" type="submit">&#9658;</button>
+        </router-link>
       </form>
 
       <select @change="getItems(query)" class="select" v-model="selectedTag">
         <option value="story">story</option>
         <option>comment</option>
       </select>
-      <h3>by</h3>
+      <h3>by </h3>
       <select @change="getItems(query)" class="select" v-model="selectedBy">
         <option value="">relevance</option>
         <option value="_by_date">date</option>
@@ -57,8 +59,13 @@
     methods: {
       getItems(id) {
         if (id !== '') {
-          console.log( this.points );
-          this.items = this.$store.dispatch('FETCH_SEARCH_RESULTS', {id: id, tag: this.selectedTag, sort: this.selectedBy, points: this.points });
+          if (this.points == '') this.points = 0;
+          this.items = this.$store.dispatch('FETCH_SEARCH_RESULTS', {
+              id: id,
+              tag: this.selectedTag,
+              sort:  this.selectedBy,
+              points: this.points,
+          });
           return this.items;
         }
       },
@@ -72,7 +79,6 @@
 
     .select, .text-field{
       height: 25px;
-      margin: auto 10px;
       border-width: 0;
       border-radius: 4px 0 0 4px;
       background: #e6e6e6;
@@ -80,13 +86,19 @@
       font-size: 16px;
     }
 
+    .select {
+      margin: auto 10px auto 10px;
+    }
+
     .text-field {
-      margin-top: 12px;
+      margin: 12px 10px auto 0;
+      padding-left: 4px;
     }
 
     .points {
       width: 60px;
       padding-left: 4px;
+      margin-left: 10px;
     }
 
     .button {
