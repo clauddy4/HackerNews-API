@@ -6,17 +6,17 @@
         <router-link :query="query" :to="'/' + query"><button @click="getItems(query)" class="button" type="submit">&#9658;</button></router-link>
       </form>
 
-      <select class="select" v-model="selectedTag">
+      <select @change="getItems(query)" class="select" v-model="selectedTag">
         <option value="story">story</option>
         <option>comment</option>
       </select>
       <h2>by</h2>
-      <select class="select" v-model="selectedBy">
+      <select @change="getItems(query)" class="select" v-model="selectedBy">
         <option value="">relevance</option>
         <option value="_by_date">date</option>
       </select>
     </div>
-      <Item v-for="item in items" :key="item.id" :story="item"></Item>
+      <Item v-for="item in items" :key="item.id" :item="item"></Item>
 
   </div>
 </template>
@@ -31,10 +31,9 @@
     },
     data: function () {
       return {
-        err: '',
         selectedTag: 'story',
         selectedBy: '',
-        query: "",
+        query: '',
 
       }
     },
@@ -51,19 +50,14 @@
         }
       }
     },
-    //   mounted() {
-    //       this.items = this.getItems('')
-    //   },
-    //   beforeRouteUpdate ( to, from , next ) {
-    //     this.items = this.getItems('');
-    //     next();
-    // },
     methods: {
       getItems(id) {
+        if (id !== '') {
           this.items = this.$store.dispatch('FETCH_SEARCH_RESULTS', {id, tag: this.selectedTag, by: this.selectedBy });
           return this.items;
-        },
+        }
       },
+    },
   }
 </script>
 
