@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <Preloader></Preloader>
     <template v-if="user">
       <h2>{{ user.username }}</h2>
       <p>Created at {{ user.created_at | toNormalTime}}</p>
@@ -30,9 +31,13 @@
 </template>
 
 <script>
+  import Preloader from "./Preloader";
 
   export default {
     name: 'User',
+    components: {
+      'Preloader': Preloader
+    },
     data: function() {
       return {
         tag: "author",

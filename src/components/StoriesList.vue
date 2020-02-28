@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="root">
     <div class="searchBar">
       <form>
         <input v-model="query" class="text-field" type="search" placeholder="Search..." />
@@ -24,6 +24,7 @@
       <h3>points</h3>
     </div>
 
+    <Preloader v-if="isLoading"></Preloader>
     <Item v-for="item in items" :key="item.id" :item="item"></Item>
 
   </div>
@@ -31,11 +32,13 @@
 
 <script>
   import Item from "./Item";
+  import Preloader from "./Preloader";
 
   export default {
     name: 'storiesList',
     components: {
-      'Item': Item
+      'Item': Item,
+      'Preloader': Preloader
     },
     data: function () {
       return {
@@ -43,10 +46,12 @@
         selectedBy: '',
         query: '',
         points: 0,
+        isLoading: true,
       }
     },
     created: function () {
-        this.$store.dispatch('FETCH_STORIES');
+      this.$store.dispatch('FETCH_STORIES');
+      this.switchLoading();
     },
     computed: {
       items: {
@@ -60,6 +65,7 @@
     },
     methods: {
       getItems(id) {
+        this.isLoading = true;
         if (id !== '') {
           if (this.points == '') this.points = 0;
           this.items = this.$store.dispatch('FETCH_SEARCH_RESULTS', {
@@ -68,57 +74,65 @@
             sort:  this.selectedBy,
             points: this.points,
           });
+          this.switchLoading()
           return this.items;
         }
       },
-    },
+      switchLoading() {
+        setTimeout(() => {
+          this.isLoading = false
+        }, 1000)
+      }
+    }
   }
 </script>
 
 <style scoped lang="scss">
-  .searchBar {
-    display: flex;
+  .root {
+    .searchBar {
+      display: flex;
 
-    .select, .text-field{
-      height: 25px;
-      border-width: 0;
-      border-radius: 4px 0 0 4px;
-      background: #e6e6e6;
-      color: #2c3e50;
-      font-size: 16px;
-    }
+      .select, .text-field{
+        height: 25px;
+        border-width: 0;
+        border-radius: 4px 0 0 4px;
+        background: #e6e6e6;
+        color: #2c3e50;
+        font-size: 16px;
+      }
 
-    .select {
-      margin: auto 10px auto 10px;
-    }
+      .select {
+        margin: auto 10px auto 10px;
+      }
 
-    .text-field {
-      margin: 12px 10px auto 0;
-      padding-left: 4px;
-    }
+      .text-field {
+        margin: 12px 10px auto 0;
+        padding-left: 4px;
+      }
 
-    .points {
-      width: 60px;
-      padding-left: 4px;
-      margin-left: 10px;
-    }
+      .points {
+        width: 60px;
+        padding-left: 4px;
+        margin-left: 10px;
+      }
 
-    .button {
-      position: relative;
-      right: 9px;
-      bottom: 3px;
-      background: #e6e6e6;
-      color: #828282;
-      font-size: 8px;
-      border-radius: 0 4px 4px 0;
-      border-style: none;
-      cursor: pointer;
-      height: 25px;
-      width: 25px;
-    }
+      .button {
+        position: relative;
+        right: 9px;
+        bottom: 3px;
+        background: #e6e6e6;
+        color: #828282;
+        font-size: 8px;
+        border-radius: 0 4px 4px 0;
+        border-style: none;
+        cursor: pointer;
+        height: 25px;
+        width: 25px;
+      }
 
-    .button:hover {
-      color: #2c3e50;
+      .button:hover {
+        color: #2c3e50;
+      }
     }
   }
 </style>

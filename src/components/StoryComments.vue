@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="root">
+    <Preloader></Preloader>
     <p>Comments:</p>
       <div v-for="comment in comments" :key="comment.id">
         <div class="comment-wrap">
@@ -21,8 +22,13 @@
 
 <script>
 
+  import Preloader from "./Preloader";
+
   export default {
     name: "Comments",
+    components: {
+      'Preloader': Preloader
+    },
     data: function() {
       return {
         comment: {},
@@ -44,6 +50,9 @@
 </script>
 
 <style lang="scss">
+
+  .root {
+    width: inherit;
 
     h2 {
       font-size: 22px;
@@ -75,7 +84,7 @@
           color: #ff6600;
         }
       }
-
+    }
   }
 
 </style>
