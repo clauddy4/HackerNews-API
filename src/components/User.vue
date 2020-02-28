@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="root">
     <Preloader></Preloader>
     <template v-if="user">
       <h2>{{ user.username }}</h2>
@@ -44,20 +44,19 @@
       }
     },
     computed: {
-        comments() {
-          return this.$store.state.comments;
-        },
-        user () {
-          return this.$store.state.user;
-        },
+      comments() {
+        return this.$store.state.comments;
+      },
+      user () {
+        return this.$store.state.user;
+      },
     },
     created: function() {
-
-        this.$store.dispatch('FETCH_USER', this.$route.params.id);
-        this.$store.dispatch('FETCH_COMMENTS', {
-          id: this.$route.params.id,
-          tag: this.tag
-        })
+      this.$store.dispatch('FETCH_USER', this.$route.params.id);
+      this.$store.dispatch('FETCH_COMMENTS', {
+        id: this.$route.params.id,
+        tag: this.tag
+      })
     },
   }
 </script>

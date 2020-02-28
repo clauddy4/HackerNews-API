@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div v-if="show" class="preloader">
+    <div v-if="isLoading" class="preloader">
       <div class="load">
         <div class="load-cube first-cube"></div>
         <div class="load-cube second-cube"></div>
@@ -17,16 +17,16 @@
     name: 'Preloader',
     data: function() {
       return {
-        show: true
+        isLoading: true
       }
     },
     mounted: function () {
-      if (this.show) this.showToggle()
+      if (this.isLoading) this.switchLoading()
     },
     methods: {
-      showToggle() {
+      switchLoading() {
         setTimeout(() => {
-          this.show = false
+          this.isLoading = false
         }, 1000)
       }
     }
