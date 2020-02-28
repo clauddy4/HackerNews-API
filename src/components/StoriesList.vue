@@ -3,7 +3,7 @@
     <div class="searchBar">
       <form>
         <input v-model="query" class="text-field" type="search" placeholder="Search..." />
-        <router-link :query="query" :to="'/' + query">
+        <router-link :query="query" :to="'/search/' + query">
           <button @click="getItems(query)" class="button" type="submit">&#9658;</button>
         </router-link>
       </form>

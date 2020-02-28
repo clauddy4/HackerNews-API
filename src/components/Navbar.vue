@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <button class="navbar-item button" onclick='window.location.reload()'>
+    <button @click="getTopStories" class="navbar-item button">
       <router-link to="/">Hacker News</router-link>
     </button>
   </div>
@@ -10,11 +10,20 @@
 
   export default {
     name: "Navbar",
+    methods: {
+      getTopStories () {
+        return this.$store.dispatch('FETCH_STORIES');
+      }
+    },
+    created: function () {
+      this.getTopStories();
+    },
   }
+
 </script>
 
 <style scoped lang="scss">
-  .navbar{
+  .navbar {
     display: flex;
     background-color: #2c3e50;
     padding: 0 0 20px 30px;
@@ -27,6 +36,5 @@
       background-color: #2c3e50;
       font: normal 14px/22px 'Tomorrow', sans-serif;
     }
-
   }
 </style>
